@@ -1,0 +1,31 @@
+[project]
+name = "large-image-mcp"
+version = "0.1.0"
+description = "MCP server that serves overviews and full-resolution sub-regions of very large images (huge TIFFs, whole-slide scans, stitched microscopy, etc.)."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+dependencies = [
+    "mcp>=1.27.0",
+    "pyvips>=3.1.1",
+    "pyvips-binary>=8.18.2",
+]
+
+[project.scripts]
+large-image-mcp = "large_image_mcp.__main__:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/large_image_mcp"]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
